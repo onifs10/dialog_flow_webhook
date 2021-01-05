@@ -14,5 +14,9 @@
 */
 
 $router->get('/', function () use ($router) {
-    return response(json_encode(['a' => 'test']), 200);
+    return response(['a' => ['a' => 'like']], 200);
 });
+
+$router->post('/hook', [
+    'as' => 'hook', 'uses' => 'WebHookController@hook'
+]);
