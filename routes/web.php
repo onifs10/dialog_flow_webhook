@@ -20,3 +20,5 @@ $router->get('/', function () use ($router) {
 $router->post('/hook', [
     'as' => 'hook', 'uses' => 'WebHookController@hook'
 ]);
+
+$router->post('/send_request' ,['uses' => 'ChatBotController@sendText']);

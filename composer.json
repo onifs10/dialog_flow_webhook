@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "google/cloud-dialogflow": "^0.17.4",
         "laravel/lumen-framework": "^8.0"
     },
     "require-dev": {
