@@ -21,7 +21,7 @@ class WebHookController extends Controller
         $message = new \stdClass();
         $textObj = new \stdClass();
         $message->text = $textObj;
-        $message->text->text[] = $text['fulfillmentMessages'];
+        $message->text->text[] = $text["queryResult"];
         return $message;
     }
 }
