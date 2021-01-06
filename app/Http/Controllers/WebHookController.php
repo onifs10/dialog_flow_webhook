@@ -12,7 +12,6 @@ class WebHookController extends Controller
          $text = $data;
          $responseObj = new \stdClass();
          $message = $this->createMessage(json_encode($text));
-         $responseObj->fulfillmentText = 'we have recieved your request';
          $responseObj->fulfillmentMessages = [ $message ];
 
          return response()->json($responseObj,200 );
@@ -22,7 +21,7 @@ class WebHookController extends Controller
         $message = new \stdClass();
         $textObj = new \stdClass();
         $message->text = $textObj;
-        $message->text->text[] = 'search is been performed';
+        $message->text->text[] = $text['fulfillmentMessages'];
         return $message;
     }
 }
