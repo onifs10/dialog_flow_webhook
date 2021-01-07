@@ -27,7 +27,7 @@ class WebHookController extends Controller
 
         $responseObj = new \stdClass();
         $message = $this->createMessage($input_text);
-        $responseObj->fulfillmentText = 'your request has been approved, we would let you know when your account has been created'
+        $responseObj->fulfillmentText = 'your request has been approved, we would let you know when your account has been created';
         $responseObj->fulfillmentMessages = [ $message ];
 
         return response()->json($responseObj,200 );
