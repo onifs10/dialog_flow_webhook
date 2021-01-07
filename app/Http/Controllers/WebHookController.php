@@ -8,19 +8,29 @@ class WebHookController extends Controller
 {
 
     function hook(Request  $request){
-         $data  =  $request->all();
-         $queryResult = $data["queryResult"];
-         $input_text =$queryResult['queryText'];
-         $parameters = $queryResult['parameters'];
-         $fulfillmentText = $queryResult['fulfillmentText'];
-         $fulfillmentMessages = $queryResult['fulfillmentMessages'];
-         
-         return $queryResult;
-         $responseObj = new \stdClass();
-         $message = $this->createMessage($input_text);
-         $responseObj->fulfillmentMessages = [ $message ];
+//         $data  =  $request->all();'
+        $responseId = $request->responseId;
+        $session = $request->input('session');
+        $queryResult = $request->queryResult;
+        //destructuring in php
+         [
+            "queryText" => $input_text ,
+            "parameters" => $parameters  ,
+            "fulfillmentText" => $fulfillmentText  , //Output text the user sees
+            "fulfillmentMessages" => $fulfillmentMessages  , //array of array|objects
+            "outputContexts" => $outputContexts,  //array of obj|array
+            "intent" => $intent ,
+            "intentDetectionConfidence" => $intentDetectionConfidence  ,
+             "languageCode" => $languageCode
+        ] = $queryResult;
 
-         return response()->json($responseObj,200 );
+
+        $responseObj = new \stdClass();
+        $message = $this->createMessage($input_text);
+        $responseObj->fulfillmentText = 'your request has been approved, we would let you know when your account has been created'
+        $responseObj->fulfillmentMessages = [ $message ];
+
+        return response()->json($responseObj,200 );
     }
 
     private function createMessage($text){
